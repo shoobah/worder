@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@section scripts
+{
+    <script src="~/Scripts/DrawStuff.js"></script>
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+            <canvas id="myCanvas" width="500" height="500">
+                Fallback
+            </canvas>
+            <img id="image1" src="~/Images/orderedList0.png" />
+        </div>
+    </section>
+}
+
+Baaaaa!
