@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<InfoWarnings>
+  <Info>01-30-2013 19:13:39 Begin full analysis with NDepend v4.1.0</Info>
+  <Info>No Baseline for Comparison loaded.</Info>
+  <Info>Concurrent mode</Info>
+  <Info>.NET Assemblies loaded from {C:\Windows\Microsoft.NET\Framework\v4.0.30319} 
+   mscorlib.dll   v4.0.0.0
+   System.Web.dll   v4.0.0.0
+   System.Web.ApplicationServices.dll   v4.0.0.0
+   System.Core.dll   v4.0.0.0
+   Microsoft.CSharp.dll   v4.0.0.0
+   System.Transactions.dll   v4.0.0.0
+   System.Data.Entity.dll   v4.0.0.0
+   System.ComponentModel.DataAnnotations.dll   v4.0.0.0</Info>
+  <Warning>No application or third party assembly found in directory {C:\Windows\Microsoft.NET\Framework\v4.0.30319\WPF}</Warning>
+  <Info>.NET Assemblies loaded from {C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET MVC 4\Assemblies} 
+   System.Web.Mvc.dll   v4.0.0.0
+   System.Web.Http.dll   v4.0.0.0
+   System.Web.Http.WebHost.dll   v4.0.0.0</Info>
+  <Info>.NET Assemblies loaded from {d:\Web\worder\worder\bin} 
+   worder.dll   v1.0.0.0
+   EntityFramework.dll   v5.0.0.0
+   System.Web.Optimization.dll   v1.0.0.0
+   WebMatrix.WebData.dll   v2.0.0.0
+   Microsoft.Web.WebPages.OAuth.dll   v2.0.0.0
+   DotNetOpenAuth.AspNet.dll   v4.0.0.0</Info>
+  <Warning>The source file {d:\Web\worder\worder\Models\AccountModels.cs} (last modified 2013-01-26 16:59:52) and the PDB file of the assembly {worder} (last modified 2013-01-23 20:02:40) are not in-sync.</Warning>
+  <Info>11 source files parsed ; all source files found ; 1 source file not in-sync with PDB</Info>
+  <Info>0 code rule has been extracted from code.</Info>
+  <Info>No dependency cycle detected in assemblies referencement graph.</Info>
+  <Info>01-30-2013 19:13:41 Analyse dependencies of your application.</Info>
+  <Info>01-30-2013 19:13:41 Building the report (standard).</Info>
+</InfoWarnings>
