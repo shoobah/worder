@@ -4,18 +4,70 @@
 
 $(function () {
     //Get the canvas
-    var cv = $("#myCanvas").get(0);
-    if (!cv) {
-        alert("FUCK! No canvas!!");
-        return;
+    var canvas = $("#myCanvas").get(0);
+    var context;
+    if (canvas.getContext) {
+        context = canvas.getContext("2d");
     }
-    var theImage = $("#image1").get(0);
-    var ctx = cv.getContext('2d');
-    if (ctx) {
-        ctx.fillStyle = "#5af";
-        ctx.strokeStyle = "#000";
-        ctx.lineWidth = "2";
-        ctx.strokeRect(0, 0, 500, 500);
-        ctx.drawImage(theImage, 100, 100);
+    
+    function getX(e) {
+        var x;
+        if (e.pageX) {
+            x = e.pageX;
+        }
+        else {
+            x = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+        }
+        x -= canvas.offsetLeft;
+        return x;
     }
+
+    function getY(e) {
+        var y;
+        if (e.pageY) {
+            y = e.pageY;
+        }
+        else {
+            y = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+        }
+        y -= canvas.offsetTop;
+        return y;
+    }
+
+    function draw() {
+        if (context) {
+            context.fillStyle = "#00ffaa";
+            context.strokeStyle = "black";
+            context.lineWidth = 1;
+            context.strokeRect(0, 0, 500, 500);
+            context.stroke();
+        }
+    }
+
+    var isDrawing = false;
+
+    $("#myCanvas").mousedown(function (event) {
+        if (event.which == 1) {
+            context.beginPath();
+            context.moveTo(getX(event), getY(event));
+        }
+    });
+    $("#myCanvas").mousemove(function (event) {
+        if (event.which == 1) {
+            var x = getX(event);
+            var y = getY(event);
+            context.lineTo(x, y);
+            context.stroke();
+            $("#info").text("Move, X=" + x + " Y=" + y);
+        }
+    });
+    $("#myCanvas").mouseup(function(event) {
+        if (event.which == 1) {
+            context.stroke();
+        }
+    });
+
+    draw();
+
 });
+
