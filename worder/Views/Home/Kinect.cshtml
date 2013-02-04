@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "Kinect";
+}
+
+<h2>Kinect</h2>
+<div id="message"></div>
+<div id="container"></div>
+<script type="text/javascript">
+    var stage = new Kinetic.Stage({
+        container: 'container',
+        width: 578,
+        height: 200
+    });
+
+    var layer = new Kinetic.Layer();
+
+    var rect = new Kinetic.Rect({
+        x: 239,
+        y: 75,
+        width: 100,
+        height: 50,
+        fill: 'green',
+        stroke: 'black',
+        strokeWidth:4,
+        draggable: true
+    });
+
+    var circle = new Kinetic.Circle({
+        x: 380,
+        y: stage.getHeight() / 2,
+        radius: 70,
+        fill: 'red',
+        stroke: 'black',
+        strokeWidth: 4,
+        draggable: true
+    });
+
+    rect.on('mouseover', function () {
+        mess("Mouse over!");
+    });
+
+    rect.on('mouseout', function() {
+        mess("Mouse out!");
+    });
+
+    rect.on('dragend', function () {
+        mess("Stopped drag rect");
+        var pos = stage.getUserPosition();
+        if (circle.intersects(pos)) {
+            mess("Inside!");
+            rect.transitionTo({
+                x: circle.getX,
+                y: circle.getY,
+                duration: 0.1
+            });
+            layer.draw();
+        }
+    });
+
+    circle.on('mouseover', function () {
+        mess("Circle Mouse over!");
+        this.setFill('blue');
+        layer.draw();
+    });
+
+    circle.on('mouseout', function() {
+        mess("Circle Mouse out!");
+        this.setFill('red');
+        layer.draw();
+    });
+
+    function mess(txt) {
+        $('#message').text(txt);
+    }
+
+    layer.add(rect);
+    layer.add(circle);
+    stage.add(layer);
+</script>

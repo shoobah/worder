@@ -28,5 +28,11 @@ namespace worder.Controllers
 
             return View();
         }
+
+        public ActionResult Kinect()
+        {
+            ViewBag.Message = "Testing kinect.js";
+            return View();
+        }
     }
 }

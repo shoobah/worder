@@ -10,6 +10,7 @@ namespace worder
             bundles.Add(new ScriptBundle("~/bundles/vendor").Include(
                 "~/js/vendor/jquery-{version}.js",
                 "~/js/vendor/jquery-migrate-{version}.js",
+                "~/js/vendor/kinetic-v{version}.js",
                 "~/js/vendor/knockout-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
