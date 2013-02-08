@@ -6,66 +6,74 @@
 <div id="message"></div>
 <div id="container"></div>
 <script type="text/javascript">
+
+    var gridSize = 30;
+    var boardWidth = 15;
+    var boardHeight = 15;
+
+    function getGridPos(a) {
+        var mod = a % gridSize;
+        var div = a / gridSize;
+        var grid = div - (mod / gridSize);
+        return grid;
+    }
+
+    function getTop(gridPos) {
+        return gridPos * gridSize;
+    }
+
     var stage = new Kinetic.Stage({
         container: 'container',
-        width: 578,
-        height: 200
+        width: boardWidth * gridSize,
+        height: boardHeight * gridSize
     });
 
     var layer = new Kinetic.Layer();
-
+    
     var rect = new Kinetic.Rect({
-        x: 239,
-        y: 75,
-        width: 100,
-        height: 50,
-        fill: 'green',
+        width: gridSize,
+        height: gridSize,
+        fill: '#EEEEEE',
         stroke: 'black',
-        strokeWidth:4,
+        strokeWidth: 2
+    });
+
+    var text = new Kinetic.Text({
+        text: 'Q',
+        fontFamily: 'Calibri',
+        fontSize: 30,
+        aling: 'center',
+        x: 5,
+        y: 0,
+        fill: 'black'
+    });
+
+    var group = new Kinetic.Group({
+        x: 100,
+        y: 120,
         draggable: true
     });
 
-    var circle = new Kinetic.Circle({
-        x: 380,
-        y: stage.getHeight() / 2,
-        radius: 70,
-        fill: 'red',
-        stroke: 'black',
-        strokeWidth: 4,
-        draggable: true
-    });
+    group.add(rect);
+    group.add(text);
 
-    rect.on('mouseover', function () {
+    group.on('mouseover', function () {
         mess("Mouse over!");
     });
 
-    rect.on('mouseout', function() {
+    group.on('mouseout', function () {
         mess("Mouse out!");
     });
 
-    rect.on('dragend', function () {
-        mess("Stopped drag rect");
+    group.on('dragend', function () {
+        mess("Stopped drag group");
         var pos = stage.getUserPosition();
-        if (circle.intersects(pos)) {
-            mess("Inside!");
-            rect.transitionTo({
-                x: circle.getX,
-                y: circle.getY,
-                duration: 0.1
-            });
-            layer.draw();
-        }
-    });
-
-    circle.on('mouseover', function () {
-        mess("Circle Mouse over!");
-        this.setFill('blue');
-        layer.draw();
-    });
-
-    circle.on('mouseout', function() {
-        mess("Circle Mouse out!");
-        this.setFill('red');
+        group.transitionTo({
+            x: getTop(getGridPos(pos.x)),
+            y: getTop(getGridPos(pos.y)),
+            duration: 0.1
+        });
+        group.setZIndex(2);
         layer.draw();
     });
 
@@ -73,7 +81,28 @@
         $('#message').text(txt);
     }
 
-    layer.add(rect);
-    layer.add(circle);
+    var gridLayer = new Kinetic.Layer();
+    var boardSizeX = boardWidth * gridSize;
+    var boardSizeY = boardHeight * gridSize;
+    for (xline = 0; xline <= boardWidth * gridSize; xline += gridSize) {
+        var line = new Kinetic.Line({
+            points:[0,xline,boardSizeY,xline],
+            stroke: '#999999',
+            strokeWidth: 1,
+            height: boardHeight * gridSize
+        });
+        gridLayer.add(line);
+        line = new Kinetic.Line({
+            points:[xline,0,xline,boardSizeX],
+            stroke: '#999999',
+            strokeWidth: 1,
+            height: boardHeight * gridSize
+        });
+        gridLayer.add(line);
+    }
+    gridLayer.draw();
+
+    layer.add(group);
+    stage.add(gridLayer);
     stage.add(layer);
 </script>
