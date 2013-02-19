@@ -218,6 +218,7 @@
     <Content Include="js\vendor\jquery-1.9.0.js" />
     <Content Include="js\vendor\kinetic-v4.3.1.js" />
     <Content Include="js\vendor\modernizr-2.6.2.js" />
+    <Content Include="js\WorderJs.js" />
     <Content Include="robots.txt" />
     <Content Include="js\DrawStuff.js" />
     <Content Include="CHANGELOG.md" />

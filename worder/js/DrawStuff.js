@@ -1,15 +1,11 @@
-﻿function initCanvas() {
-
-}
-
-$(function () {
+﻿function drawGrid() {
     //Get the canvas
     var canvas = $("#myCanvas").get(0);
     var context;
     if (canvas.getContext) {
         context = canvas.getContext("2d");
     }
-    
+
     function getX(e) {
         var x;
         if (e.pageX) {
@@ -61,13 +57,16 @@ $(function () {
             $("#info").text("Move, X=" + x + " Y=" + y);
         }
     });
-    $("#myCanvas").mouseup(function(event) {
+    $("#myCanvas").mouseup(function (event) {
         if (event.which == 1) {
             context.stroke();
         }
     });
 
     draw();
+}
 
+$(function () {
+    drawGrid();
 });
 
